@@ -1,0 +1,91 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'org.springframework.boot' version '2.2.13.RELEASE' apply false
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE' apply false
+
+}
+
+group = 'com.koreanair'
+version = '0.0.2'
+java.sourceCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
+
+publishing {
+    publications {
+        myLib(MavenPublication) {
+            from components.java
+        }
+
+        snapshot(MavenPublication) {
+            groupId = 'com.koreanair'
+            artifactId = 'mybatis-prettylogger'
+            from components.java
+
+            repositories {
+
+                maven {
+                    credentials {
+                        username = 'developer'
+                        password = 'roqkfwk'
+                    }
+
+                    url = 'https://itro.koreanair.com/library/repository/maven-snapshots-dev'
+                }
+            }
+        }
+
+
+        release(MavenPublication) {
+            groupId = 'com.koreanair'
+            artifactId = 'mybatis-prettylogger'
+            version = '0.0.3'
+            from components.java
+
+            repositories {
+
+                maven {
+                    credentials {
+                        username = 'developer'
+                        password = 'roqkfwk'
+                    }
+
+                    url = 'https://itro.koreanair.com/library/repository/maven-releases-prd'
+                }
+            }
+        }
+    }
+
+}
+
+//java {
+//    withSourcesJar()
+//}
+
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+
+    compileOnly 'org.springframework.boot:spring-boot'
+    compileOnly 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.1'
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+test.onlyIf {
+    !project.hasProperty("test")
+}
+
+tasks.named("jar") {
+    archiveClassifier = ''
+}
+
