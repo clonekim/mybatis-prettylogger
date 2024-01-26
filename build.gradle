@@ -28,11 +28,11 @@ publishing {
 
                 maven {
                     credentials {
-                        username = 'developer'
-                        password = 'roqkfwk'
+                        username = ''
+                        password = ''
                     }
 
-                    url = 'https://itro.koreanair.com/library/repository/maven-snapshots-dev'
+                    url = 'https://xxx/maven-snapshots-dev'
                 }
             }
         }
@@ -48,11 +48,11 @@ publishing {
 
                 maven {
                     credentials {
-                        username = 'developer'
-                        password = 'roqkfwk'
+                        username = ''
+                        password = ''
                     }
 
-                    url = 'https://itro.koreanair.com/library/repository/maven-releases-prd'
+                    url = 'https://xxx/maven-releases-prd'
                 }
             }
         }
